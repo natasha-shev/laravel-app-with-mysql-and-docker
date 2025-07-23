@@ -9,7 +9,7 @@ services:
       - ./:/var/www
       - ./default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - gitlab-analysis
+      - laravel-template
   php-fpm:
     image: php/php:8.3-fpm
     volumes:
@@ -20,7 +20,7 @@ services:
         user: $DOCKER_USER_ID
         uid: 1000
     networks:
-      - gitlab-analysis
+      - laravel-template
   mysqldb:
       image: mysql
       restart: unless-stopped
@@ -35,8 +35,8 @@ services:
       volumes:
         - ./persistent-data/mysql-data:/var/lib/mysql
       networks:
-        - gitlab-analysis
+        - laravel-template
 
 networks:
-  gitlab-analysis:
+  laravel-template:
     driver: bridge
